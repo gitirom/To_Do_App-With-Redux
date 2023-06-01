@@ -1,5 +1,6 @@
-import Store from "./store";
-import { addTask, removeTask, completedTask } from "./action";
+
+import Store from "./Store/ConfigureStore";
+import { addTask, removeTask, completedTask } from "./Store/tasks";
 
 /*this function run everyTime when something changed in 
 our Redux Store state. */
