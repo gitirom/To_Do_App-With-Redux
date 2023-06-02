@@ -10,14 +10,14 @@ const unsubscribe = Store.subscribe(() => {
 });
 
 //Dispatching action from Store
-Store.dispatch(addTask("Task 1"));
-Store.dispatch(addTask("Task 2"));
+Store.dispatch(addTask({task: "Task 1"}));
+Store.dispatch(addTask({task: "Task 2"}));
 console.log(Store.getState());
 
 unsubscribe();
-Store.dispatch(completedTask(2))
+Store.dispatch(completedTask({id: 2}));
 
-Store.dispatch(removeTask(1));
+Store.dispatch(removeTask({id: 1}));
 console.log(Store.getState());
 
 
