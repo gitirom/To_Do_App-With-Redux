@@ -10,6 +10,7 @@ module.exports = {
         contentBase: path.join(__dirname, "dist"),
         port: 3000,
     },
+    devtool: "source-map",
     mode: "development",
 };
 // Webpack is the bundler for bundle our Javascript code in one file an then link with our Browser
