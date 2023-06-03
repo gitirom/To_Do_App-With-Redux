@@ -1,4 +1,5 @@
-import { createAction } from "@reduxjs/toolkit";
+import { createAction, createReducer } from "@reduxjs/toolkit";
+
 
 
 //Actions with Redux Toolkit 
@@ -6,7 +7,7 @@ export const addTask = createAction("ADD_TASK");
 export const removeTask = createAction("REMOVE_TASK");
 export const completedTask = createAction("TASK_COMPLETED");
 
-console.log(addTask.type);
+
 
 
 // export const addTask = (task) => {
@@ -35,32 +36,52 @@ console.log(addTask.type);
 
 */
 
-//creating a reducer function 
+//creating a reducer function with Redux toolkit
 
 
 let id = 0 ;
 
-export default function reducer(state=[], action) {
-    if(action.type === addTask.type) {
-        return [...state, 
-            {
+export default createReducer([], {
+    [addTask.type]: (state, action) => {
+        state.push({
                 id: ++id,
                 task: action.payload.task,
                 completed: false
-            }
-        ];
-        
+        })
+    }, 
+    [removeTask.type]: (state, action) => {
+        const index = state.findIndex(task => task.id === action.payload.id)
+        state.splice(index, 1) //remove the id-task from the index 
+    },
+    [completedTask.type]: (state, action) => {
+        const index = state.findIndex(task => task.id === action.payload.id)
+        state[index].completed = true;
     }
-    else if(action.type === completedTask.type){
-        return state.map(task => task.id === action.payload.id ? {
-            ...task, completed: true
-        } : task)
-    }
-    else if(action.type === removeTask.type){
-        return state.filter(task => task.id !== action.payload.id);
-    }
+})
 
-    return state;
-}
+
+
+// export default function reducer(state=[], action) {
+//     if(action.type === addTask.type) {
+//         return [...state, 
+//             {
+//                 id: ++id,
+//                 task: action.payload.task,
+//                 completed: false
+//             }
+//         ];
+        
+//     }
+//     else if(action.type === completedTask.type){
+//         return state.map(task => task.id === action.payload.id ? {
+//             ...task, completed: true
+//         } : task)
+//     }
+//     else if(action.type === removeTask.type){
+//         return state.filter(task => task.id !== action.payload.id);
+//     }
+
+//     return state;
+// }
 
 
