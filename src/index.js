@@ -24,6 +24,7 @@ our Redux Store state. */
 
 // console.log(Store.getState());
 
-Store.dispatch(addEmployess({name: "Mouhamed"}));
+// Store.dispatch(addEmployess({name: "Mouhamed"}));
+Store.dispatch({ type: "SHOW_ERROR", payload: {error: "User Not Found"} })
 
 
