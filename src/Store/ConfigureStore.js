@@ -1,6 +1,6 @@
 
 import { configureStore } from '@reduxjs/toolkit';
-import reducer from './tasks';
+import reducer from './employess';
 
 //Creating a Redux Store with ReduxToolkit
 
